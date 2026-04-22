@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.routers.chat import router as chat_router
 from backend.routers.system import router as system_router
 from backend.routers.runner import router as runner_router
+from backend.routers.files import router as files_router
 from backend.core.memory import init_db
 from backend.core.runner import init_runner_db
 import os
@@ -23,6 +24,7 @@ app.add_middleware(
 app.include_router(chat_router)
 app.include_router(system_router)
 app.include_router(runner_router)
+app.include_router(files_router)
 
 
 @app.on_event("startup")

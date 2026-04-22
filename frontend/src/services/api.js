@@ -65,4 +65,13 @@ export const runnerAPI = {
   getLogs: () => api.get('/runner/logs'),
 }
 
+export const filesAPI = {
+  readFile: (file) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    return api.post('/files/read', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+  },
+}
 export default api

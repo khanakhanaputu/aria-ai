@@ -2,7 +2,7 @@
   <div class="flex flex-col h-full bg-zinc-900 border-r border-zinc-800 w-64 shrink-0">
     <!-- Header -->
     <div class="p-4 border-b border-zinc-800">
-      <h1 class="text-white font-semibold text-lg tracking-tight">🤖 Aria AI</h1>
+      <h1 class="text-white font-semibold text-lg tracking-tight">Kane hitam</h1>
     </div>
 
     <!-- New Chat Button -->

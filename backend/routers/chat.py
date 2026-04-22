@@ -74,8 +74,13 @@ async def stream_message(req: ChatRequest):
         session_id = await create_session()
 
     history = await get_messages(session_id)
+
     await save_message(session_id, "user", req.message)
-    messages = history + [{"role": "user", "content": req.message}]
+
+    # Trim — ambil 20 pesan terakhir saja
+    MAX_HISTORY = 20
+    trimmed_history = history[-MAX_HISTORY:] if len(history) > MAX_HISTORY else history
+    messages = trimmed_history + [{"role": "user", "content": req.message}]
 
     full_reply = []
 
@@ -87,7 +92,6 @@ async def stream_message(req: ChatRequest):
         reply_text = "".join(full_reply)
         await save_message(session_id, "assistant", reply_text)
 
-        # Auto-generate title untuk sesi baru
         if is_new_session:
             title = await generate_title(req.message)
             await update_session_title(session_id, title)
